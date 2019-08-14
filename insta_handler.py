@@ -14,8 +14,19 @@ class Insta_handler:
     def init_profile(self, loader):
         self.profile = instaloader.Profile.from_username(loader.context, self.login)
 
-#
-# loader = insta_handler.init_loader()
-#
-# profile = instaloader.Profile.from_username(loader.context, 's0cial_menace')
-#
+    def dont_follow_back(self):
+        followers = []
+        following = []
+        not_following_back = []
+
+        for follower in self.profile.get_followers():
+            followers.append(follower.username)
+
+        for follower in self.profile.get_followees():
+            following.append(follower.username)
+
+        not_following_back = set(following) - set(followers)
+
+        msg = '\n'.join(not_following_back)
+
+        return msg

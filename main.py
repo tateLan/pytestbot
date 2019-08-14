@@ -37,11 +37,13 @@ def try_login():        #check 4 correct data
     except:
         return False
 
-# @bot.message_handler(content_types=['text'])
-# def send_text(message):
-#     if message.text.lower() == 'followers':
-#         bot.send_message(message.chat.id, 'Привет, мой создатель')
-#     elif message.text.lower() == 'пока':
-#         bot.send_message(message.chat.id, 'Прощай, создатель')
+@bot.message_handler(content_types=['text'])        #
+def send_text(message):
+    if message.text.lower() == 'dont follow me':
+        not_following_back = inst_handlr.dont_follow_back()
+        bot.send_message(message.chat.id, not_following_back)
+
+    elif message.text.lower() == 'пока':
+        bot.send_message(message.chat.id, 'Прощай, создатель')
 
 bot.polling()

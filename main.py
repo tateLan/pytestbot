@@ -27,6 +27,8 @@ def enter_pass(message):
 
             bot.delete_message(message.chat.id, message_id=message.message_id)
             bot.send_message(message.chat.id, 'mssg with pass deleted for security :)')
+        else:
+            bot.send_message(message.chat.id, 'smth went wrong, maybe credentials r wrond')
 
 def try_login():
     try:
